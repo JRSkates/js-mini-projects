@@ -69,6 +69,7 @@ const getFieldName = (input) => {
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
+  // Calling functions to handle event checks
   checkRequired([username, email, password, password2]);
   checkLength(username, 3, 15);
   checkLength(password, 6, 25);
