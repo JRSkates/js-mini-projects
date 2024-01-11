@@ -75,4 +75,5 @@ form.addEventListener('submit', (e) => {
   checkLength(password, 6, 25);
   checkEmail(email);
   checkPasswordsMatch(password, password2);
+  // Event Functions end, correct display
 });
