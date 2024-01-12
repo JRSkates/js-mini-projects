@@ -1,14 +1,27 @@
 const container = document.querySelector('.container');
-const seats = document.querySelectorAll('.row.seats:not(.occupied)');
+const seats = document.querySelectorAll('.row .seat:not(.occupied)');
 const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
 let ticketPrice = +movieSelect.value;
 
+// Save selected movie index and price
+const setMovieData = (movieIndex, moviePrice) => {
+  localStorage.setItem('selectedMovieIndex', movieIndex);
+  localStorage.setItem('selectedMoviePrice', moviePrice);
+}
+
 // Update dynmaic total and count
 const updateSelectedCount = () => {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
+
+  // Copy selected seats into an array
+  // Map through array
+  // Return a new array indexes
+  const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat))
+
+  localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
 
   const selectedSeatsCount = selectedSeats.length;
 
@@ -17,9 +30,9 @@ const updateSelectedCount = () => {
 }
 
 // Movie select event
-
 movieSelect.addEventListener('change', (e) => {
   ticketPrice = e.target.value;
+  setMovieData(e.target.selectedIndex, e.target.value);
   updateSelectedCount();
 })
 
