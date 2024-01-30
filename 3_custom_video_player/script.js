@@ -24,13 +24,32 @@ const updatePlayIcon = () => {
 }
 
 // update the progress and the timestamp
+// Done by dividing the current time of the video by the duration then 
+// multiplying by 100 to get the percentage. This percentage is then
+// assigned to the progress.value
 const updateProgress = () => {
-  return true;
+  progress.value = (video.currentTime / video.duration) *
+  100;
+
+  // Get the minutes
+  let mins = Math.floor(video.currentTime / 60);
+  if(mins < 10) {
+    mins = '0' + String(mins);
+  }
+
+  // Get the seconds
+  let secs = Math.floor(video.currentTime % 60);
+  if(secs < 10) {
+    secs = '0' + String(secs);
+  }
+
+  timestamp.innerHTML = `${mins}:${secs}`;
 }
 
 // Set video time to current time in video
 const setVideoProgress = () => {
-  return true;
+  video.currentTime = (+progress.value * video.duration) /
+  100;
 }
 
 // Stop video
